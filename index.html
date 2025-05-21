@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Powered Food Life Saver</title>
+
+  <!-- Flask will serve these from the /static/ folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <!-- Tesseract.js CDN can stay as-is -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.0/tesseract.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🍏 AI-Powered Food Life Saver 🥦</h1>
+    <p>Track food expiry, upload receipts, get reminders, and reduce food waste efficiently.</p>
+    
+    <form id="foodForm">
+      <label for="foodItem" class="sr-only">Food Item</label>
+      <input type="text" id="foodItem" placeholder="Enter food item" title="Enter the name of the food item" required />
+      
+      <label for="purchaseDate" class="sr-only">Purchase Date</label>
+<input type="date" id="purchaseDate" title="Select the purchase date of the item" required />
+
+      <button type="submit">➕ Add Food</button>
+    </form>
+
+    <h2>📤 Upload Supermarket Receipt</h2>
+    <label for="receiptUpload" class="sr-only">Upload your receipt image</label>
+<input type="file" id="receiptUpload" accept="image/*" title="Upload your receipt image" />
+
+    <button onclick="processReceipt()">📸 Process Receipt</button>
+    <p id="receiptStatus"></p>
+
+    <h2>📋 Food Inventory</h2>
+    <table id="foodTable">
+      <thead>
+        <tr>
+          <th>🍽 Food Item</th>
+          <th>🛒 Purchase Date</th>
+          <th>⏳ Expiry Date</th>
+          <th>⚠ Status</th>
+          <th>🗑 Action</th>
+        </tr>
+      </thead>
+      <tbody id="foodList"></tbody>
+    </table>
+
+    <h2>🥗 Recipe Suggestions</h2>
+    <p>Select ingredients from your inventory to get AI‐powered recipe suggestions.</p>
+    <label for="recipeIngredients" class="sr-only">Choose Ingredients</label>
+<select id="recipeIngredients" title="Select ingredients to get recipe suggestions" multiple>
+
+      <option value="Milk">Milk</option>
+      <option value="Bread">Bread</option>
+      <option value="Eggs">Eggs</option>
+      <option value="Tomatoes">Tomatoes</option>
+      <option value="Cheese">Cheese</option>
+      <option value="Onions">Onions</option>
+      <option value="Chicken">Chicken</option>
+      <option value="Rice">Rice</option>
+      <option value="Potatoes">Potatoes</option>
+    </select>
+    <button onclick="suggestRecipe()">🍽 Get Recipe</button>
+    <p id="recipeResult"></p>
+  </div>
+</body>
+</html>
